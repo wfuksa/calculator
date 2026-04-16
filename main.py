@@ -10,85 +10,43 @@ window.resizable(False, False)
 def clear_all():
     global value
     value = ""
+    display.delete(0, tk.END)
+    display.insert(0, value)
 
-def set_one():
+def add_digit(digit):
     global value
-    value = value + "1"
-    print(value)
+    value = value + str(digit)
+    display.delete (0, tk.END)
+    display.insert (0, value)
 
-def set_two():
-    global value
-    value = value + "2"
-    print(value)
-
-def set_three():
-    global value
-    value = value + "3"
-    print(value)
-
-def set_four():
-    global value
-    value = value + "4"
-    print(value)
-
-def set_five():
-    global value
-    value = value + "5"
-    print(value)
-
-def set_six():
-    global value
-    value = value + "6"
-    print(value)
-
-def set_seven():
-    global value
-    value = value + "7"
-    print(value)
-
-def set_eight():
-    global value
-    value = value + "8"
-    print(value)
-
-def set_nine():
-    global value
-    value = value + "9"
-    print(value)
-
-def set_zero():
-    global value
-    value = value + "0"
-    print(value)
-
-button = tk.Button(window, text="1", command=set_one)
+button = tk.Button(window, text="1", command=lambda: add_digit(1))
 button.place(x=15, y=340, width=100, height=100)
 
-button = tk.Button(window, text="2", command=set_two)
+button = tk.Button(window, text="2", command=lambda: add_digit(2))
 button.place(x=130, y=340, width=100, height=100)
 
-button = tk.Button(window, text="3", command=set_three)
+button = tk.Button(window, text="3", command=lambda: add_digit(3))
 button.place(x=245, y=340, width=100, height=100)
 
-button = tk.Button(window, text="4", command=set_four)
+button = tk.Button(window, text="4", command=lambda: add_digit(4))
 button.place(x=15, y=450, width=100, height=100)
 
-button = tk.Button(window, text="5", command=set_five)
+button = tk.Button(window, text="5", command=lambda: add_digit(5))
 button.place(x=130, y=450, width=100, height=100)
 
-button = tk.Button(window, text="6", command=set_six)
+button = tk.Button(window, text="6", command=lambda: add_digit(6))
 button.place(x=245, y=450, width=100, height=100)
 
-button = tk.Button(window, text="7", command=set_seven)
+button = tk.Button(window, text="7", command=lambda: add_digit(7))
 button.place(x=15, y=560, width=100, height=100)
 
-button = tk.Button(window, text="8", command=set_eight)
+button = tk.Button(window, text="8", command=lambda: add_digit(8))
 button.place(x=130, y=560, width=100, height=100)
 
-button = tk.Button(window, text="9", command=set_nine)
+button = tk.Button(window, text="9", command=lambda: add_digit(9))
 button.place(x=245, y=560, width=100, height=100)
 
-button = tk.Button(window, text="0", command=set_zero)
+button = tk.Button(window, text="0", command=lambda: add_digit(0))
 button.place(x=15, y=670, width=215, height=100)
 
 button = tk.Button(window, text="+")
