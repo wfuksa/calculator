@@ -7,17 +7,55 @@ window.title("Calculator")
 window.geometry("475x800")
 window.resizable(False, False)
 
+def update_display():
+    display.delete(0, tk.END)
+    display.insert(0, value)
+
 def clear_all():
     global value
     value = ""
-    display.delete(0, tk.END)
-    display.insert(0, value)
+    update_display()
 
 def add_digit(digit):
     global value
     value = value + str(digit)
-    display.delete (0, tk.END)
-    display.insert (0, value)
+    update_display()
+
+def add_operator(operator):
+    global value
+
+    if value == "":
+        if operator == "-":
+            value = "-"
+        update_display()
+        return
+
+    if value[-1] in "+-*/":
+        value = value[:-1] + operator
+    else:
+        value = value + operator
+
+    update_display()
+
+def calculate():
+    global value
+
+    if value == "":
+        return
+
+    if value[-1] in "+-*/":
+        return
+
+    try:
+        result = eval(value)
+        if result == int(result):
+            value = str(int(result))
+        else:
+            value = str(result)
+        update_display()
+    except:
+        value = "Error"
+        update_display()
 
 button = tk.Button(window, text="1", command=lambda: add_digit(1))
 button.place(x=15, y=340, width=100, height=100)
@@ -49,19 +87,19 @@ button.place(x=245, y=560, width=100, height=100)
 button = tk.Button(window, text="0", command=lambda: add_digit(0))
 button.place(x=15, y=670, width=215, height=100)
 
-button = tk.Button(window, text="+")
+button = tk.Button(window, text="+", command=lambda: add_operator("+"))
 button.place(x=360, y=340, width=100, height=100)
 
-button = tk.Button(window, text="-")
+button = tk.Button(window, text="-", command=lambda: add_operator("-"))
 button.place(x=360, y=450, width=100, height=100)
 
-button = tk.Button(window, text="/")
+button = tk.Button(window, text="/", command=lambda: add_operator("/"))
 button.place(x=360, y=560, width=100, height=100)
 
-button = tk.Button(window, text="x")
+button = tk.Button(window, text="*", command=lambda: add_operator("*"))
 button.place(x=360, y=670, width=100, height=100)
 
-button = tk.Button(window, text="=")
+button = tk.Button(window, text="=", command=calculate)
 button.place(x=245, y=670, width=100, height=100)
 
 button = tk.Button(window, text="AC", command=clear_all)
